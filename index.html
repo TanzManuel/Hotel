@@ -33,7 +33,6 @@
   <!-- NAVBAR -->
   <header class="bg-white/95 backdrop-blur-md border-b border-slate-200/80 sticky top-0 z-40 shadow-sm">
     <div class="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between">
-      <!-- Left: Logo & Menu -->
       <div class="flex items-center space-x-6">
         <a href="#" onclick="filterByCity('all')" class="flex items-center space-x-2.5 group">
           <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-sky-400 to-blue-600 flex items-center justify-center text-white shadow-sm group-hover:scale-105 transition">
@@ -58,7 +57,6 @@
         </nav>
       </div>
 
-      <!-- Right: Database Status & Login/Daftar Bar -->
       <div class="flex items-center space-x-3">
         <div class="hidden sm:flex items-center space-x-1 text-[11px] font-bold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-200">
           <i class="fa-solid fa-database text-[10px]"></i>
@@ -67,7 +65,6 @@
 
         <div class="h-5 w-[1px] bg-slate-200 hidden sm:block"></div>
 
-        <!-- Bar Login & Daftar (Saat Belum Login) -->
         <div id="guestAuthBar" class="flex items-center bg-slate-100/80 p-1 rounded-xl border border-slate-200/80">
           <button onclick="openAuthModal('login')" class="px-3.5 py-1.5 rounded-lg text-slate-700 hover:text-sky-600 hover:bg-white text-xs font-bold flex items-center space-x-1.5 transition">
             <i class="fa-regular fa-user text-[11px] text-sky-600"></i>
@@ -79,11 +76,8 @@
           </button>
         </div>
 
-        <!-- Bar Profil User (Muncul Saat Sudah Login) -->
         <div id="userProfileBar" class="hidden items-center space-x-2 bg-sky-50 border border-sky-200/80 pl-2.5 pr-1.5 py-1 rounded-xl">
-          <div class="w-6 h-6 rounded-full bg-sky-600 text-white flex items-center justify-center text-[11px] font-bold" id="userInitial">
-            U
-          </div>
+          <div class="w-6 h-6 rounded-full bg-sky-600 text-white flex items-center justify-center text-[11px] font-bold" id="userInitial">U</div>
           <div class="leading-tight pr-1">
             <span id="userNameDisplay" class="block text-[11px] font-bold text-slate-800">User</span>
             <span id="userTierDisplay" class="block text-[9px] font-semibold text-sky-600">Member Priority</span>
@@ -114,7 +108,6 @@
   <!-- SEARCH BOX CONTAINER -->
   <section class="max-w-4xl mx-auto px-4 -mt-16 relative z-20">
     <div class="bg-white rounded-xl shadow-lg border border-slate-100 p-5">
-      <!-- Top Tabs -->
       <div class="flex items-center space-x-4 border-b border-slate-100 pb-3 mb-4 text-xs font-bold">
         <div class="flex items-center space-x-1.5 text-sky-600 border-b-2 border-sky-600 pb-3 -mb-3.5">
           <i class="fa-solid fa-bed"></i>
@@ -126,9 +119,7 @@
         </div>
       </div>
 
-      <!-- Search Inputs -->
       <form onsubmit="handleSearch(event)" class="grid grid-cols-1 md:grid-cols-12 gap-3 items-end">
-        <!-- Kota / Destinasi -->
         <div class="md:col-span-4">
           <label class="block text-[10px] font-bold uppercase text-slate-400 mb-1">Kota / Destinasi</label>
           <div class="relative">
@@ -145,7 +136,6 @@
           </div>
         </div>
 
-        <!-- Check-In -->
         <div class="md:col-span-3">
           <label class="block text-[10px] font-bold uppercase text-slate-400 mb-1">Check-In</label>
           <div class="relative">
@@ -154,7 +144,6 @@
           </div>
         </div>
 
-        <!-- Check-Out -->
         <div class="md:col-span-3">
           <label class="block text-[10px] font-bold uppercase text-slate-400 mb-1">Check-Out</label>
           <div class="relative">
@@ -163,7 +152,6 @@
           </div>
         </div>
 
-        <!-- Submit Button -->
         <div class="md:col-span-2">
           <button type="submit" class="w-full py-2.5 bg-orange-500 hover:bg-orange-600 text-white font-bold text-xs rounded-lg shadow-sm flex items-center justify-center space-x-1.5 transition">
             <i class="fa-solid fa-magnifying-glass"></i>
@@ -212,71 +200,46 @@
     </div>
   </section>
 
-  <!-- DESTINASI POPULER DI INDONESIA -->
+  <!-- DESTINASI POPULER -->
   <section class="max-w-4xl mx-auto px-4 mt-8">
     <div class="flex items-end justify-between mb-4">
       <div>
         <h2 class="text-base font-extrabold text-slate-800">Destinasi Populer di Indonesia</h2>
         <p class="text-xs text-slate-400">Jelajahi tempat-tempat wisata favorit pilihan jutaan traveler</p>
       </div>
-      <button onclick="filterByCity('all')" class="text-xs font-bold text-sky-600 hover:underline">
-        Lihat Semua Hotel &rsaquo;
-      </button>
+      <button onclick="filterByCity('all')" class="text-xs font-bold text-sky-600 hover:underline">Lihat Semua Hotel &rsaquo;</button>
     </div>
 
     <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
       <div onclick="filterByCity('Bali')" class="group relative h-36 rounded-xl overflow-hidden cursor-pointer shadow-sm">
         <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=400&q=80" alt="Bali" class="w-full h-full object-cover group-hover:scale-110 transition duration-300" />
         <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent"></div>
-        <div class="absolute bottom-2.5 left-2.5 text-white">
-          <h4 class="font-bold text-xs">Bali</h4>
-          <p class="text-[10px] text-slate-300">Hotel Pilihan</p>
-        </div>
+        <div class="absolute bottom-2.5 left-2.5 text-white"><h4 class="font-bold text-xs">Bali</h4></div>
       </div>
-
       <div onclick="filterByCity('Bandung')" class="group relative h-36 rounded-xl overflow-hidden cursor-pointer shadow-sm">
         <img src="https://images.unsplash.com/photo-1584810359583-96fc3448beaa?auto=format&fit=crop&w=400&q=80" alt="Bandung" class="w-full h-full object-cover group-hover:scale-110 transition duration-300" />
         <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent"></div>
-        <div class="absolute bottom-2.5 left-2.5 text-white">
-          <h4 class="font-bold text-xs">Bandung</h4>
-          <p class="text-[10px] text-slate-300">Hotel Pilihan</p>
-        </div>
+        <div class="absolute bottom-2.5 left-2.5 text-white"><h4 class="font-bold text-xs">Bandung</h4></div>
       </div>
-
       <div onclick="filterByCity('Jakarta')" class="group relative h-36 rounded-xl overflow-hidden cursor-pointer shadow-sm">
         <img src="https://images.unsplash.com/photo-1555899434-94d1368aa7af?auto=format&fit=crop&w=400&q=80" alt="Jakarta" class="w-full h-full object-cover group-hover:scale-110 transition duration-300" />
         <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent"></div>
-        <div class="absolute bottom-2.5 left-2.5 text-white">
-          <h4 class="font-bold text-xs">Jakarta</h4>
-          <p class="text-[10px] text-slate-300">Hotel Pilihan</p>
-        </div>
+        <div class="absolute bottom-2.5 left-2.5 text-white"><h4 class="font-bold text-xs">Jakarta</h4></div>
       </div>
-
       <div onclick="filterByCity('Yogyakarta')" class="group relative h-36 rounded-xl overflow-hidden cursor-pointer shadow-sm">
         <img src="https://images.unsplash.com/photo-1596402184320-417e7178b2cd?auto=format&fit=crop&w=400&q=80" alt="Yogyakarta" class="w-full h-full object-cover group-hover:scale-110 transition duration-300" />
         <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent"></div>
-        <div class="absolute bottom-2.5 left-2.5 text-white">
-          <h4 class="font-bold text-xs">Yogyakarta</h4>
-          <p class="text-[10px] text-slate-300">Hotel Pilihan</p>
-        </div>
+        <div class="absolute bottom-2.5 left-2.5 text-white"><h4 class="font-bold text-xs">Yogyakarta</h4></div>
       </div>
-
       <div onclick="filterByCity('Surabaya')" class="group relative h-36 rounded-xl overflow-hidden cursor-pointer shadow-sm">
         <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=400&q=80" alt="Surabaya" class="w-full h-full object-cover group-hover:scale-110 transition duration-300" />
         <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent"></div>
-        <div class="absolute bottom-2.5 left-2.5 text-white">
-          <h4 class="font-bold text-xs">Surabaya</h4>
-          <p class="text-[10px] text-slate-300">Hotel Pilihan</p>
-        </div>
+        <div class="absolute bottom-2.5 left-2.5 text-white"><h4 class="font-bold text-xs">Surabaya</h4></div>
       </div>
-
       <div onclick="filterByCity('Labuan Bajo')" class="group relative h-36 rounded-xl overflow-hidden cursor-pointer shadow-sm">
         <img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=400&q=80" alt="Labuan Bajo" class="w-full h-full object-cover group-hover:scale-110 transition duration-300" />
         <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent"></div>
-        <div class="absolute bottom-2.5 left-2.5 text-white">
-          <h4 class="font-bold text-xs">Labuan Bajo</h4>
-          <p class="text-[10px] text-slate-300">Hotel Pilihan</p>
-        </div>
+        <div class="absolute bottom-2.5 left-2.5 text-white"><h4 class="font-bold text-xs">Labuan Bajo</h4></div>
       </div>
     </div>
   </section>
@@ -291,79 +254,26 @@
         </div>
         <p class="text-xs text-slate-400">Hotel bintang 5 dengan penilaian tertinggi dan fasilitas terlengkap</p>
       </div>
-      <button onclick="filterByCity('all')" class="text-xs font-bold text-sky-600 hover:underline">
-        Lihat Semua Hotel &rsaquo;
-      </button>
+      <button onclick="filterByCity('all')" class="text-xs font-bold text-sky-600 hover:underline">Lihat Semua Hotel &rsaquo;</button>
     </div>
 
     <div id="hotelList" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-      <!-- Diisi otomatis dari database MariaDB -->
       <div class="col-span-full text-center py-8 text-slate-400 text-xs">Memuat data hotel dari MariaDB...</div>
     </div>
   </section>
 
-  <!-- MODAL LOGIN / DAFTAR -->
-  <div id="authModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs hidden items-center justify-center z-50 p-4">
-    <div class="bg-white rounded-2xl max-w-sm w-full overflow-hidden shadow-2xl border border-slate-100 animate-fade">
-      <div class="bg-gradient-to-r from-sky-500 to-blue-600 p-5 text-white relative">
-        <button onclick="closeAuthModal()" class="absolute top-4 right-4 w-7 h-7 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center text-white transition">
-          <i class="fa-solid fa-xmark text-xs"></i>
-        </button>
-        <div class="flex items-center space-x-2 mb-1">
-          <i class="fa-solid fa-paper-plane text-xs"></i>
-          <span class="text-[10px] font-bold uppercase tracking-widest text-sky-100">StayNusa Account</span>
+  <!-- MODAL PEMILIHAN KAMAR (BARU) -->
+  <div id="roomModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs hidden items-center justify-center z-50 p-4">
+    <div class="bg-white rounded-2xl max-w-lg w-full p-5 shadow-2xl animate-fade">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3 mb-4">
+        <div>
+          <span class="text-[10px] font-bold uppercase tracking-widest text-sky-600">Pilih Tipe Kamar</span>
+          <h3 id="modalHotelName" class="font-extrabold text-sm text-slate-800">Nama Hotel</h3>
         </div>
-        <h3 id="authHeaderTitle" class="font-extrabold text-lg">Selamat Datang Kembali!</h3>
-        <p class="text-[11px] text-sky-100 mt-0.5">Masuk untuk mengelola E-Tiket & klaim kupon Rp 50.000</p>
+        <button onclick="closeRoomModal()" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark"></i></button>
       </div>
-
-      <div class="p-5">
-        <div class="grid grid-cols-2 bg-slate-100 p-1 rounded-xl mb-4 text-xs font-bold">
-          <button type="button" id="tabLoginBtn" onclick="switchAuthTab('login')" class="py-2 rounded-lg bg-white text-sky-600 shadow-xs transition">
-            Login Masuk
-          </button>
-          <button type="button" id="tabRegisterBtn" onclick="switchAuthTab('register')" class="py-2 rounded-lg text-slate-500 hover:text-slate-700 transition">
-            Daftar Baru
-          </button>
-        </div>
-
-        <form onsubmit="submitAuth(event)" class="space-y-3">
-          <div id="registerNameField" class="hidden">
-            <label class="block text-[11px] font-bold text-slate-600 mb-1">Nama Lengkap</label>
-            <div class="relative">
-              <i class="fa-regular fa-id-card absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
-              <input id="authNameInput" type="text" placeholder="Contoh: Budi Santoso" class="w-full pl-8 pr-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-sky-500" />
-            </div>
-          </div>
-
-          <div>
-            <label class="block text-[11px] font-bold text-slate-600 mb-1">Alamat Email</label>
-            <div class="relative">
-              <i class="fa-regular fa-envelope absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
-              <input id="authEmailInput" type="email" required placeholder="nama@email.com" class="w-full pl-8 pr-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-sky-500" />
-            </div>
-          </div>
-
-          <div>
-            <label class="block text-[11px] font-bold text-slate-600 mb-1">Kata Sandi</label>
-            <div class="relative">
-              <i class="fa-solid fa-lock absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
-              <input id="authPasswordInput" type="password" required placeholder="Minimal 6 karakter" class="w-full pl-8 pr-9 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:bg-white focus:outline-none focus:border-sky-500" />
-              <button type="button" onclick="togglePasswordVisibility()" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 text-xs">
-                <i id="eyeIcon" class="fa-regular fa-eye"></i>
-              </button>
-            </div>
-          </div>
-
-          <div id="registerPromoBadge" class="hidden p-2.5 rounded-xl bg-amber-50 border border-amber-200 flex items-center space-x-2 text-[11px] text-amber-800">
-            <i class="fa-solid fa-gift text-amber-500"></i>
-            <span>Daftar hari ini otomatis dapat <b>Kupon Liburan Rp 50.000</b>!</span>
-          </div>
-
-          <button type="submit" id="authSubmitBtn" class="w-full py-2.5 bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-600 hover:to-blue-700 text-white font-bold text-xs rounded-xl shadow-md transition">
-            Masuk ke Akun
-          </button>
-        </form>
+      <div id="roomOptionsContainer" class="space-y-3 max-h-72 overflow-y-auto text-xs">
+        <!-- Pilihan kamar diisi via JS -->
       </div>
     </div>
   </div>
@@ -376,25 +286,44 @@
           <i class="fa-solid fa-ticket text-amber-500"></i>
           <h3 class="font-extrabold text-sm text-slate-800">E-Tiket & Pesanan Saya (MariaDB)</h3>
         </div>
-        <button onclick="closeOrdersModal()" class="text-slate-400 hover:text-slate-600">
-          <i class="fa-solid fa-xmark"></i>
-        </button>
+        <button onclick="closeOrdersModal()" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark"></i></button>
       </div>
-      <div id="ordersListContainer" class="space-y-3 max-h-80 overflow-y-auto text-xs">
-        <!-- Diisi via Fetch API MariaDB -->
+      <div id="ordersListContainer" class="space-y-3 max-h-80 overflow-y-auto text-xs"></div>
+    </div>
+  </div>
+
+  <!-- MODAL LOGIN -->
+  <div id="authModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs hidden items-center justify-center z-50 p-4">
+    <div class="bg-white rounded-2xl max-w-sm w-full overflow-hidden shadow-2xl border border-slate-100 animate-fade">
+      <div class="bg-gradient-to-r from-sky-500 to-blue-600 p-5 text-white relative">
+        <button onclick="closeAuthModal()" class="absolute top-4 right-4 w-7 h-7 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center text-white transition"><i class="fa-solid fa-xmark text-xs"></i></button>
+        <h3 class="font-extrabold text-lg">StayNusa Account</h3>
+        <p class="text-[11px] text-sky-100 mt-0.5">Masuk untuk mengelola E-Tiket & klaim kupon Rp 50.000</p>
+      </div>
+      <div class="p-5">
+        <form onsubmit="submitAuth(event)" class="space-y-3">
+          <div>
+            <label class="block text-[11px] font-bold text-slate-600 mb-1">Alamat Email</label>
+            <input type="email" required placeholder="nama@email.com" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:border-sky-500" />
+          </div>
+          <div>
+            <label class="block text-[11px] font-bold text-slate-600 mb-1">Kata Sandi</label>
+            <input type="password" required placeholder="••••••••" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:border-sky-500" />
+          </div>
+          <button type="submit" class="w-full py-2.5 bg-sky-500 hover:bg-sky-600 text-white font-bold text-xs rounded-xl shadow-md transition">Masuk</button>
+        </form>
       </div>
     </div>
   </div>
 
   <script>
     let allHotels = [];
-    let authMode = "login";
+    let selectedHotelData = null;
 
     function formatRupiah(num) {
       return "Rp " + Number(num).toLocaleString("id-ID");
     }
 
-    // Ambil data hotel dari backend API Vercel -> MariaDB
     async function fetchHotelsFromDB() {
       try {
         const res = await fetch('/api/hotels');
@@ -418,7 +347,7 @@
       }
 
       if (hotels.length === 0) {
-        container.innerHTML = `<div class="col-span-full text-center py-6 text-slate-400 text-xs">Tidak ada hotel ditemukan pada kategori ini.</div>`;
+        container.innerHTML = `<div class="col-span-full text-center py-6 text-slate-400 text-xs">Tidak ada hotel ditemukan.</div>`;
         return;
       }
 
@@ -427,27 +356,22 @@
           <div class="relative h-36">
             <img src="${hotel.image}" alt="${hotel.name}" class="w-full h-full object-cover" />
             <span class="absolute top-2 left-2 bg-black/60 backdrop-blur-sm text-white text-[10px] font-bold px-2 py-0.5 rounded flex items-center space-x-1">
-              <i class="fa-solid fa-location-dot text-sky-400"></i>
-              <span>${hotel.city}</span>
+              <i class="fa-solid fa-location-dot text-sky-400"></i><span>${hotel.city}</span>
             </span>
-            <span class="absolute top-2 right-2 bg-amber-400 text-slate-900 text-[10px] font-extrabold px-1.5 py-0.5 rounded">
-              ★★★★★
-            </span>
+            <span class="absolute top-2 right-2 bg-amber-400 text-slate-900 text-[10px] font-extrabold px-1.5 py-0.5 rounded">★★★★★</span>
           </div>
           <div class="p-3.5 flex-1 flex flex-col justify-between">
             <div>
               <h3 class="font-bold text-xs text-slate-800 line-clamp-1" title="${hotel.name}">${hotel.name}</h3>
-              <p class="text-[11px] text-amber-500 font-semibold mt-1">
-                <i class="fa-solid fa-star"></i> ${hotel.rating} / 5.0
-              </p>
+              <p class="text-[11px] text-amber-500 font-semibold mt-1"><i class="fa-solid fa-star"></i> ${hotel.rating} / 5.0</p>
             </div>
             <div class="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between">
               <div>
                 <span class="block text-[9px] text-slate-400">Mulai dari</span>
                 <span class="font-extrabold text-xs text-orange-500">${formatRupiah(hotel.price)}</span>
               </div>
-              <button onclick="bookHotel('${hotel.name}', '${hotel.city}', ${hotel.price})" class="px-2.5 py-1.5 bg-sky-500 hover:bg-sky-600 text-white font-bold text-[10px] rounded-md transition">
-                Pilih
+              <button onclick='openRoomModal(${JSON.stringify(hotel)})' class="px-2.5 py-1.5 bg-sky-500 hover:bg-sky-600 text-white font-bold text-[10px] rounded-md transition">
+                Pilih Kamar
               </button>
             </div>
           </div>
@@ -470,37 +394,73 @@
       filterByCity(document.getElementById("destinationSelect").value);
     }
 
-    // Pemesanan & Simpan E-Tiket ke MariaDB
-    async function bookHotel(name, city, price) {
-      const finalPrice = price - 50000; // Kupon Rp 50.000
-      const ticket_code = "STAY-" + Math.floor(100000 + Math.random() * 900000);
+    // Buka Modal Pemilihan Kamar
+    function openRoomModal(hotel) {
+      selectedHotelData = hotel;
+      document.getElementById("modalHotelName").textContent = hotel.name + " (" + hotel.city + ")";
       
+      const basePrice = Number(hotel.price);
+      const rooms = [
+        { type: "Deluxe Room", desc: "1 Tempat Tidur Queen • WiFi • Sarapan 2 Orang", price: basePrice },
+        { type: "Executive Suite", desc: "1 Tempat Tidur King • Pemandangan Kota • Bathtub • Sarapan", price: basePrice + 350000 },
+        { type: "Presidential Villa", desc: "2 Kamar Tidur • Kolam Renang Pribadi • Layanan Butler 24 Jam", price: basePrice + 1200000 }
+      ];
+
+      document.getElementById("roomOptionsContainer").innerHTML = rooms.map(r => `
+        <div class="p-3.5 rounded-xl border border-slate-200 bg-slate-50 hover:border-sky-500 flex items-center justify-between transition">
+          <div>
+            <h4 class="font-bold text-slate-800 text-xs">${r.type}</h4>
+            <p class="text-[11px] text-slate-500 mt-0.5">${r.desc}</p>
+            <p class="font-extrabold text-orange-500 text-xs mt-1.5">${formatRupiah(r.price)} / malam</p>
+          </div>
+          <button onclick="confirmBooking('${r.type}', ${r.price})" class="px-3 py-2 bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-[10px] rounded-lg shrink-0 transition">
+            Pesan Sekarang
+          </button>
+        </div>
+      `).join("");
+
+      const modal = document.getElementById("roomModal");
+      modal.classList.remove("hidden");
+      modal.classList.add("flex");
+    }
+
+    function closeRoomModal() {
+      document.getElementById("roomModal").classList.add("hidden");
+      document.getElementById("roomModal").classList.remove("flex");
+    }
+
+    // Kirim Pemesanan ke Database MariaDB
+    async function confirmBooking(roomType, roomPrice) {
+      closeRoomModal();
+      const finalPrice = roomPrice - 50000; // Kupon Rp 50.000 otomatis
+      const ticket_code = "STAY-" + Math.floor(100000 + Math.random() * 900000);
+      const hotelDesc = `${selectedHotelData.name} - ${roomType}`;
+
       try {
         const res = await fetch('/api/bookings', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             ticket_code,
-            hotel_name: name,
-            city,
+            hotel_name: hotelDesc,
+            city: selectedHotelData.city,
             final_price: finalPrice,
             check_in_out: '21/10/2026 - 23/10/2026'
           })
         });
 
         if (res.ok) {
-          alert(`Berhasil Memesan ${name}!\nKupon Liburan Rp 50.000 otomatis terpasang.\nTotal Bayar: ${formatRupiah(finalPrice)}\nKode E-Tiket: ${ticket_code}\n(Tersimpan ke MariaDB)`);
+          alert(`Berhasil Memesan Kamar!\nHotel: ${selectedHotelData.name}\nTipe: ${roomType}\nKupon Rp 50.000 Terpasang!\nTotal: ${formatRupiah(finalPrice)}\nKode E-Tiket: ${ticket_code}`);
           loadBookingsFromDB();
         } else {
           alert('Gagal menyimpan pesanan ke database.');
         }
       } catch (err) {
         console.error(err);
-        alert('Terjadi kesalahan koneksi.');
+        alert('Terjadi kesalahan koneksi ke server.');
       }
     }
 
-    // Ambil daftar E-Tiket dari MariaDB
     async function loadBookingsFromDB() {
       try {
         const res = await fetch('/api/bookings');
@@ -541,92 +501,38 @@
     }
 
     function closeOrdersModal() {
-      const modal = document.getElementById("ordersModal");
-      modal.classList.add("hidden");
-      modal.classList.remove("flex");
+      document.getElementById("ordersModal").classList.add("hidden");
+      document.getElementById("ordersModal").classList.remove("flex");
     }
 
-    // Autentikasi Sederhana
-    function openAuthModal(mode) {
-      switchAuthTab(mode);
+    function openAuthModal() {
       const modal = document.getElementById("authModal");
       modal.classList.remove("hidden");
       modal.classList.add("flex");
     }
 
     function closeAuthModal() {
-      const modal = document.getElementById("authModal");
-      modal.classList.add("hidden");
-      modal.classList.remove("flex");
-    }
-
-    function switchAuthTab(mode) {
-      authMode = mode;
-      const loginBtn = document.getElementById("tabLoginBtn");
-      const registerBtn = document.getElementById("tabRegisterBtn");
-      const nameField = document.getElementById("registerNameField");
-      const promoBadge = document.getElementById("registerPromoBadge");
-      const headerTitle = document.getElementById("authHeaderTitle");
-      const submitBtn = document.getElementById("authSubmitBtn");
-
-      if (mode === "login") {
-        loginBtn.className = "py-2 rounded-lg bg-white text-sky-600 shadow-xs transition";
-        registerBtn.className = "py-2 rounded-lg text-slate-500 hover:text-slate-700 transition";
-        nameField.classList.add("hidden");
-        promoBadge.classList.add("hidden");
-        headerTitle.textContent = "Selamat Datang Kembali!";
-        submitBtn.textContent = "Masuk ke Akun";
-      } else {
-        registerBtn.className = "py-2 rounded-lg bg-white text-sky-600 shadow-xs transition";
-        loginBtn.className = "py-2 rounded-lg text-slate-500 hover:text-slate-700 transition";
-        nameField.classList.remove("hidden");
-        promoBadge.classList.remove("hidden");
-        headerTitle.textContent = "Buat Akun Baru";
-        submitBtn.textContent = "Daftar & Klaim Voucher";
-      }
-    }
-
-    function togglePasswordVisibility() {
-      const pwd = document.getElementById("authPasswordInput");
-      const icon = document.getElementById("eyeIcon");
-      if (pwd.type === "password") {
-        pwd.type = "text";
-        icon.className = "fa-regular fa-eye-slash";
-      } else {
-        pwd.type = "password";
-        icon.className = "fa-regular fa-eye";
-      }
+      document.getElementById("authModal").classList.add("hidden");
+      document.getElementById("authModal").classList.remove("flex");
     }
 
     function submitAuth(e) {
       e.preventDefault();
-      const email = document.getElementById("authEmailInput").value;
-      const nameInput = document.getElementById("authNameInput").value;
-      const displayName = authMode === "register" && nameInput ? nameInput : email.split("@")[0];
-
-      setLoggedInUser(displayName, authMode === "register" ? "Member Baru (Kupon Aktif)" : "Member Priority");
       closeAuthModal();
-    }
-
-    function setLoggedInUser(name, tier) {
       document.getElementById("guestAuthBar").classList.add("hidden");
       const profileBar = document.getElementById("userProfileBar");
       profileBar.classList.remove("hidden");
       profileBar.classList.add("flex");
-      document.getElementById("userNameDisplay").textContent = name;
-      document.getElementById("userTierDisplay").textContent = tier;
-      document.getElementById("userInitial").textContent = name.charAt(0).toUpperCase();
+      document.getElementById("userNameDisplay").textContent = "Pengguna";
     }
 
     function logoutUser() {
       document.getElementById("guestAuthBar").classList.remove("hidden");
-      const profileBar = document.getElementById("userProfileBar");
-      profileBar.classList.add("hidden");
-      profileBar.classList.remove("flex");
-      alert("Anda telah keluar dari akun.");
+      document.getElementById("userProfileBar").classList.add("hidden");
+      document.getElementById("userProfileBar").classList.remove("flex");
+      alert("Anda telah keluar.");
     }
 
-    // Jalankan saat pertama kali halaman dimuat
     fetchHotelsFromDB();
   </script>
 </body>
