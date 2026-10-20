@@ -8,6 +8,8 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!-- SweetAlert2: popup notifikasi yang lebih modern -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <style>
@@ -25,6 +27,40 @@
     }
     .animate-fade {
       animation: fadeIn 0.2s ease-out forwards;
+    }
+    .auth-field {
+      width: 100%;
+      border: 1px solid #e2e8f0;
+      background: #f8fafc;
+      border-radius: 12px;
+      padding: 11px 13px;
+      font-size: 12px;
+      outline: none;
+      transition: border-color .2s, box-shadow .2s, background .2s;
+    }
+    .auth-field:focus {
+      border-color: #38bdf8;
+      background: #fff;
+      box-shadow: 0 0 0 3px rgba(56,189,248,.15);
+    }
+    .swal2-popup {
+      border-radius: 22px !important;
+      font-family: 'Plus Jakarta Sans', sans-serif !important;
+    }
+    .swal2-title {
+      color: #0f172a !important;
+      font-size: 21px !important;
+      font-weight: 800 !important;
+    }
+    .swal2-html-container {
+      color: #64748b !important;
+      font-size: 13px !important;
+    }
+    .swal2-confirm {
+      border-radius: 11px !important;
+      padding: 10px 22px !important;
+      font-size: 12px !important;
+      font-weight: 800 !important;
     }
   </style>
 </head>
@@ -54,11 +90,6 @@
       </div>
 
       <div class="flex items-center space-x-3">
-        <div class="hidden sm:flex items-center space-x-1 text-[11px] font-bold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-200">
-          <i class="fa-solid fa-database text-[10px]"></i>
-          <span>MariaDB Online</span>
-        </div>
-
         <!-- Bar Login & Daftar -->
         <div id="guestAuthBar" class="flex items-center bg-slate-100/80 p-1 rounded-xl border border-slate-200/80">
           <button onclick="openAuthModal('login')" class="px-3.5 py-1.5 rounded-lg text-slate-700 hover:text-sky-600 hover:bg-white text-xs font-bold transition">Login</button>
@@ -127,11 +158,78 @@
       </div>
     </section>
 
+    <!-- PROMO & FITUR UNGGULAN -->
+    <section class="max-w-4xl mx-auto px-4 mt-8">
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <button type="button" onclick="showPromo('Kupon Liburan Rp 50.000', 'Kupon promo akan diterapkan pada ringkasan pesanan jika tersedia.')" class="text-left rounded-xl p-4 text-white shadow-md bg-gradient-to-r from-orange-500 to-amber-500 hover:-translate-y-0.5 transition">
+          <div class="flex items-center justify-between">
+            <span class="text-[9px] font-extrabold uppercase bg-white/20 px-2 py-1 rounded">Voucher Diskon</span>
+            <i class="fa-solid fa-tags text-lg bg-white/20 p-2 rounded-lg"></i>
+          </div>
+          <h3 class="font-extrabold text-sm mt-2">Kupon Liburan Rp 50.000</h3>
+          <p class="text-[10px] text-white/90 mt-1">Promo hemat untuk perjalananmu</p>
+        </button>
+        <button type="button" onclick="showPromo('Bebas Reschedule & Batal', 'Kebijakan perubahan dan pembatalan mengikuti aturan masing-masing hotel. Periksa ketentuan sebelum memesan.')" class="text-left rounded-xl p-4 text-white shadow-md bg-gradient-to-r from-blue-600 to-sky-500 hover:-translate-y-0.5 transition">
+          <div class="flex items-center justify-between">
+            <span class="text-[9px] font-extrabold uppercase bg-white/20 px-2 py-1 rounded">Fleksibel</span>
+            <i class="fa-solid fa-rotate-left text-lg bg-white/20 p-2 rounded-lg"></i>
+          </div>
+          <h3 class="font-extrabold text-sm mt-2">Bebas Reschedule & Batal</h3>
+          <p class="text-[10px] text-white/90 mt-1">Cek ketentuan tiap hotel sebelum pesan</p>
+        </button>
+        <button type="button" onclick="showPromo('E-Tiket & Struk', 'Detail pesanan dapat dilihat melalui menu Pesanan setelah data booking berhasil tersimpan.')" class="text-left rounded-xl p-4 text-white shadow-md bg-gradient-to-r from-emerald-600 to-teal-500 hover:-translate-y-0.5 transition">
+          <div class="flex items-center justify-between">
+            <span class="text-[9px] font-extrabold uppercase bg-white/20 px-2 py-1 rounded">Praktis</span>
+            <i class="fa-solid fa-qrcode text-lg bg-white/20 p-2 rounded-lg"></i>
+          </div>
+          <h3 class="font-extrabold text-sm mt-2">E-Tiket & Struk Digital</h3>
+          <p class="text-[10px] text-white/90 mt-1">Simpan detail pesanan dengan mudah</p>
+        </button>
+      </div>
+    </section>
+
+    <!-- DESTINASI POPULER -->
+    <section class="max-w-4xl mx-auto px-4 mt-8">
+      <div class="flex items-end justify-between mb-3">
+        <div>
+          <h2 class="text-sm font-extrabold text-slate-800">Destinasi Populer di Indonesia</h2>
+          <p class="text-[10px] text-slate-500 mt-1">Pilih tempat favorit untuk liburanmu</p>
+        </div>
+        <button type="button" onclick="goHome(); document.getElementById('destinationSelect').value='all';" class="text-[10px] font-bold text-sky-600 hover:text-sky-700">Lihat Semua</button>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2">
+        <button type="button" onclick="chooseDestination('Bali')" class="group relative h-24 sm:h-28 rounded-xl overflow-hidden text-left shadow-sm">
+          <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=400&q=80" alt="Bali" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition duration-300"/>
+          <span class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-900/10 to-transparent"></span><span class="absolute bottom-2 left-2 text-white text-xs font-extrabold">Bali</span>
+        </button>
+        <button type="button" onclick="chooseDestination('Bandung')" class="group relative h-24 sm:h-28 rounded-xl overflow-hidden text-left shadow-sm">
+          <img src="https://images.unsplash.com/photo-1582972236019-ea4af5ffe587?auto=format&fit=crop&w=400&q=80" alt="Bandung" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition duration-300"/>
+          <span class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-900/10 to-transparent"></span><span class="absolute bottom-2 left-2 text-white text-xs font-extrabold">Bandung</span>
+        </button>
+        <button type="button" onclick="chooseDestination('Jakarta')" class="group relative h-24 sm:h-28 rounded-xl overflow-hidden text-left shadow-sm">
+          <img src="https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=400&q=80" alt="Jakarta" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition duration-300"/>
+          <span class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-900/10 to-transparent"></span><span class="absolute bottom-2 left-2 text-white text-xs font-extrabold">Jakarta</span>
+        </button>
+        <button type="button" onclick="chooseDestination('Yogyakarta')" class="group relative h-24 sm:h-28 rounded-xl overflow-hidden text-left shadow-sm">
+          <img src="https://images.unsplash.com/photo-1596402184320-417e7178b2cd?auto=format&fit=crop&w=400&q=80" alt="Yogyakarta" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition duration-300"/>
+          <span class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-900/10 to-transparent"></span><span class="absolute bottom-2 left-2 text-white text-xs font-extrabold">Yogyakarta</span>
+        </button>
+        <button type="button" onclick="chooseDestination('Surabaya')" class="group relative h-24 sm:h-28 rounded-xl overflow-hidden text-left shadow-sm">
+          <img src="https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=400&q=80" alt="Surabaya" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition duration-300"/>
+          <span class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-900/10 to-transparent"></span><span class="absolute bottom-2 left-2 text-white text-xs font-extrabold">Surabaya</span>
+        </button>
+        <button type="button" onclick="chooseDestination('Labuan Bajo')" class="group relative h-24 sm:h-28 rounded-xl overflow-hidden text-left shadow-sm">
+          <img src="https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?auto=format&fit=crop&w=400&q=80" alt="Labuan Bajo" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition duration-300"/>
+          <span class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-900/10 to-transparent"></span><span class="absolute bottom-2 left-2 text-white text-xs font-extrabold">Labuan Bajo</span>
+        </button>
+      </div>
+    </section>
+
     <!-- LIST HOTEL -->
     <section id="rekomendasi" class="max-w-4xl mx-auto px-4 mt-8 pb-24">
       <h2 class="text-base font-extrabold text-slate-800 mb-4">Rekomendasi Hotel Mewah Pilihan</h2>
       <div id="hotelList" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-        <div class="col-span-full text-center py-8 text-slate-400 text-xs">Memuat data hotel dari MariaDB...</div>
+        <div class="col-span-full text-center py-8 text-slate-400 text-xs">Memuat rekomendasi hotel...</div>
       </div>
     </section>
   </div>
@@ -225,25 +323,72 @@
   </div>
 
   <!-- MODAL LOGIN & DAFTAR -->
-  <div id="authModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs hidden items-center justify-center z-50 p-4">
-    <div class="bg-white rounded-2xl max-w-sm w-full overflow-hidden shadow-2xl border border-slate-100 animate-fade">
-      <div class="bg-gradient-to-r from-sky-500 to-blue-600 p-5 text-white relative">
-        <button onclick="closeAuthModal()" class="absolute top-4 right-4 text-white"><i class="fa-solid fa-xmark"></i></button>
-        <h3 id="authTitle" class="font-extrabold text-lg">Login ke StayNusa</h3>
-        <p class="text-[11px] text-sky-100">Silakan login terlebih dahulu untuk melanjutkan pemesanan</p>
+  <div id="authModal" onclick="if(event.target===this) closeAuthModal()" class="fixed inset-0 bg-slate-950/60 backdrop-blur-sm hidden items-center justify-center z-50 p-4">
+    <div class="bg-white rounded-3xl max-w-md w-full overflow-hidden shadow-2xl border border-white/60 animate-fade relative">
+      <button type="button" onclick="closeAuthModal()" aria-label="Tutup" class="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-white/15 hover:bg-white/25 text-white transition flex items-center justify-center">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <div class="relative overflow-hidden bg-gradient-to-br from-sky-500 via-blue-600 to-indigo-700 px-6 pt-7 pb-8 text-white">
+        <div class="absolute -right-8 -top-10 w-36 h-36 rounded-full border-[22px] border-white/10"></div>
+        <div class="absolute right-14 bottom-[-35px] w-24 h-24 rounded-full bg-white/10"></div>
+        <div class="relative flex items-center gap-3 mb-5">
+          <div class="w-12 h-12 rounded-2xl bg-white/15 border border-white/20 flex items-center justify-center shadow-inner">
+            <i class="fa-solid fa-paper-plane text-xl"></i>
+          </div>
+          <div class="leading-tight">
+            <div class="font-extrabold text-xl tracking-tight">StayNusa</div>
+            <div class="text-[9px] tracking-[.22em] font-bold text-sky-100 mt-1">HOTELS & RESORTS</div>
+          </div>
+        </div>
+        <h3 id="authTitle" class="relative font-extrabold text-2xl tracking-tight">Selamat datang kembali!</h3>
+        <p id="authSubtitle" class="relative text-xs text-sky-100 mt-2 leading-relaxed">Masuk untuk melanjutkan perjalanan dan mengelola pesanan hotelmu.</p>
       </div>
-      <div class="p-5">
-        <form onsubmit="submitAuth(event)" class="space-y-3">
-          <div>
-            <label class="block text-[11px] font-bold text-slate-600 mb-1">Email</label>
-            <input id="loginEmail" type="email" required placeholder="tanz@gmail.com" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs" />
+      <div class="p-6 sm:p-7">
+        <div class="grid grid-cols-2 gap-1 p-1 bg-slate-100 rounded-xl mb-5">
+          <button type="button" id="loginTab" onclick="setAuthMode('login')" class="py-2.5 rounded-lg text-xs font-extrabold transition bg-white text-sky-700 shadow-sm">Masuk</button>
+          <button type="button" id="registerTab" onclick="setAuthMode('register')" class="py-2.5 rounded-lg text-xs font-extrabold text-slate-500 hover:text-sky-700 transition">Buat Akun</button>
+        </div>
+        <form id="authForm" onsubmit="submitAuth(event)" class="space-y-4">
+          <div id="authNameWrap" class="hidden">
+            <label for="authName" class="block text-[11px] font-extrabold text-slate-600 mb-1.5">Nama lengkap</label>
+            <div class="relative">
+              <i class="fa-regular fa-user absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+              <input id="authName" type="text" autocomplete="name" placeholder="Nama kamu" class="auth-field pl-9" />
+            </div>
           </div>
           <div>
-            <label class="block text-[11px] font-bold text-slate-600 mb-1">Password</label>
-            <input type="password" required placeholder="••••••••" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs" />
+            <label for="loginEmail" class="block text-[11px] font-extrabold text-slate-600 mb-1.5">Alamat email</label>
+            <div class="relative">
+              <i class="fa-regular fa-envelope absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+              <input id="loginEmail" type="email" required autocomplete="email" placeholder="nama@email.com" class="auth-field pl-9" />
+            </div>
           </div>
-          <button type="submit" class="w-full py-2.5 bg-sky-500 hover:bg-sky-600 text-white font-bold text-xs rounded-xl shadow-md transition">Masuk</button>
+          <div>
+            <div class="flex items-center justify-between mb-1.5">
+              <label for="authPassword" class="block text-[11px] font-extrabold text-slate-600">Password</label>
+              <span id="passwordHint" class="text-[10px] text-slate-400">Minimal 6 karakter</span>
+            </div>
+            <div class="relative">
+              <i class="fa-solid fa-lock absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+              <input id="authPassword" type="password" required minlength="6" autocomplete="current-password" placeholder="Masukkan password" class="auth-field pl-9 pr-11" />
+              <button type="button" onclick="togglePasswordVisibility()" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-sky-600 p-1" aria-label="Tampilkan atau sembunyikan password"><i id="passwordEye" class="fa-regular fa-eye text-xs"></i></button>
+            </div>
+          </div>
+          <div id="authConfirmWrap" class="hidden">
+            <label for="authConfirmPassword" class="block text-[11px] font-extrabold text-slate-600 mb-1.5">Konfirmasi password</label>
+            <div class="relative">
+              <i class="fa-solid fa-shield-halved absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+              <input id="authConfirmPassword" type="password" minlength="6" autocomplete="new-password" placeholder="Ulangi password" class="auth-field pl-9" />
+            </div>
+          </div>
+          <button id="authSubmitButton" type="submit" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-600 hover:to-blue-700 text-white font-extrabold text-xs shadow-lg shadow-sky-500/20 transition hover:-translate-y-0.5">
+            <i class="fa-solid fa-right-to-bracket mr-2"></i>Masuk ke Akun
+          </button>
         </form>
+        <div class="flex items-center justify-center gap-2 mt-5 text-[10px] text-slate-400">
+          <i class="fa-solid fa-shield-halved text-emerald-500"></i>
+          <span>Data kamu hanya digunakan untuk pengalaman pemesanan</span>
+        </div>
       </div>
     </div>
   </div>
@@ -277,6 +422,16 @@
       } catch (err) {
         console.error("Gagal memuat hotel:", err);
       }
+    }
+
+    function handleSearch(e) {
+      if (e && typeof e.preventDefault === "function") e.preventDefault();
+      const destination = document.getElementById("destinationSelect").value;
+      const filteredHotels = destination === "all"
+        ? allHotels
+        : allHotels.filter(hotel => String(hotel.city).toLowerCase() === destination.toLowerCase());
+      renderHotels(filteredHotels);
+      document.getElementById("rekomendasi").scrollIntoView({ behavior: "smooth", block: "start" });
     }
 
     function renderHotels(hotels) {
@@ -345,7 +500,7 @@
     function handleRoomSelection(type, price) {
       // VALIDASI LOGIN: Jika belum login, buka modal login dulu
       if (!activeUser) {
-        alert("Silakan login atau daftar terlebih dahulu untuk melanjutkan pemesanan.");
+        showAlert("info", "Login dulu, yuk!", "Masuk atau buat akun untuk melanjutkan pemesanan hotel.");
         openAuthModal('login');
         return;
       }
@@ -395,15 +550,15 @@
         });
 
         if (res.ok) {
-          alert(`Pembayaran Berhasil!\nE-Tiket Anda telah diterbitkan.\nKode Tiket: ${ticket_code}`);
+          showAlert("success", "Pesanan berhasil dibuat!", `Kode E-Tiket: ${ticket_code}`, { confirmButtonText: "Lihat E-Tiket" });
           goHome();
           loadBookingsFromDB();
         } else {
-          alert("Gagal memproses pesanan ke database.");
+          showAlert("error", "Pesanan belum tersimpan", "Server belum berhasil menyimpan data pesanan. Coba lagi.");
         }
       } catch (err) {
         console.error(err);
-        alert("Kesalahan koneksi server.");
+        showAlert("error", "Koneksi bermasalah", "Tidak dapat menghubungi server. Periksa koneksi lalu coba lagi.");
       }
     }
 
@@ -422,7 +577,7 @@
         }
 
         container.innerHTML = bookings.length === 0 
-          ? `<p class="text-center text-slate-400 py-4">Belum ada pesanan aktif di MariaDB.</p>`
+          ? `<p class="text-center text-slate-400 py-4">Belum ada pesanan aktif.</p>`
           : bookings.map(b => `
             <div class="p-3 bg-slate-50 border border-slate-200 rounded-xl flex justify-between items-center">
               <div>
@@ -445,15 +600,100 @@
     function openOrdersModal() { loadBookingsFromDB(); }
     function closeOrdersModal() { document.getElementById("ordersModal").classList.add("hidden"); }
 
-    function openAuthModal() {
-      document.getElementById("authModal").classList.remove("hidden");
-      document.getElementById("authModal").classList.add("flex");
-    }
-    function closeAuthModal() { document.getElementById("authModal").classList.add("hidden"); }
+    let authMode = "login";
 
-    function submitAuth(e) {
+    function openAuthModal(mode = "login") {
+      setAuthMode(mode);
+      const modal = document.getElementById("authModal");
+      modal.classList.remove("hidden");
+      modal.classList.add("flex");
+      document.body.style.overflow = "hidden";
+      setTimeout(() => {
+        const firstField = authMode === "register"
+          ? document.getElementById("authName")
+          : document.getElementById("loginEmail");
+        if (firstField) firstField.focus();
+      }, 80);
+    }
+
+    function closeAuthModal() {
+      const modal = document.getElementById("authModal");
+      modal.classList.add("hidden");
+      modal.classList.remove("flex");
+      document.body.style.overflow = "";
+    }
+
+    function setAuthMode(mode) {
+      authMode = mode === "register" ? "register" : "login";
+      const isRegister = authMode === "register";
+      document.getElementById("authTitle").textContent = isRegister ? "Mulai perjalananmu!" : "Selamat datang kembali!";
+      document.getElementById("authSubtitle").textContent = isRegister
+        ? "Buat akun StayNusa untuk menyimpan dan mengelola pesanan hotelmu."
+        : "Masuk untuk melanjutkan perjalanan dan mengelola pesanan hotelmu.";
+      document.getElementById("authNameWrap").classList.toggle("hidden", !isRegister);
+      document.getElementById("authConfirmWrap").classList.toggle("hidden", !isRegister);
+      document.getElementById("authName").required = isRegister;
+      document.getElementById("authConfirmPassword").required = isRegister;
+      document.getElementById("authPassword").autocomplete = isRegister ? "new-password" : "current-password";
+      document.getElementById("passwordHint").textContent = "Minimal 6 karakter";
+
+      const loginTab = document.getElementById("loginTab");
+      const registerTab = document.getElementById("registerTab");
+      loginTab.className = "py-2.5 rounded-lg text-xs font-extrabold transition " +
+        (!isRegister ? "bg-white text-sky-700 shadow-sm" : "text-slate-500 hover:text-sky-700");
+      registerTab.className = "py-2.5 rounded-lg text-xs font-extrabold transition " +
+        (isRegister ? "bg-white text-sky-700 shadow-sm" : "text-slate-500 hover:text-sky-700");
+      document.getElementById("authSubmitButton").innerHTML = isRegister
+        ? '<i class="fa-solid fa-user-plus mr-2"></i>Buat Akun'
+        : '<i class="fa-solid fa-right-to-bracket mr-2"></i>Masuk ke Akun';
+    }
+
+    function togglePasswordVisibility() {
+      const password = document.getElementById("authPassword");
+      const eye = document.getElementById("passwordEye");
+      const show = password.type === "password";
+      password.type = show ? "text" : "password";
+      eye.className = show ? "fa-regular fa-eye-slash text-xs" : "fa-regular fa-eye text-xs";
+    }
+
+    function showAlert(icon, title, text, options = {}) {
+      if (window.Swal) {
+        return Swal.fire({
+          icon, title, text,
+          confirmButtonText: "Mengerti",
+          confirmButtonColor: "#0284c7",
+          buttonsStyling: true,
+          ...options
+        });
+      }
+      alert(title + (text ? "\\n\\n" + text : ""));
+      return Promise.resolve();
+    }
+
+    async function submitAuth(e) {
       e.preventDefault();
-      const email = document.getElementById("loginEmail").value;
+      const email = document.getElementById("loginEmail").value.trim();
+      const password = document.getElementById("authPassword").value;
+      const name = document.getElementById("authName").value.trim();
+      const confirmPassword = document.getElementById("authConfirmPassword").value;
+
+      if (authMode === "register") {
+        if (!name) {
+          showAlert("warning", "Nama belum diisi", "Masukkan nama lengkap untuk membuat akun.");
+          return;
+        }
+        if (password.length < 6) {
+          showAlert("warning", "Password terlalu pendek", "Gunakan password minimal 6 karakter.");
+          return;
+        }
+        if (password !== confirmPassword) {
+          showAlert("error", "Password tidak cocok", "Pastikan password dan konfirmasi password sama.");
+          return;
+        }
+      }
+
+      // Demo frontend: this only changes the UI state. Real account registration/login
+      // requires a secure backend and password verification.
       activeUser = email;
       closeAuthModal();
 
@@ -461,9 +701,19 @@
       const profile = document.getElementById("userProfileBar");
       profile.classList.remove("hidden");
       profile.classList.add("flex");
-      document.getElementById("userNameDisplay").textContent = email.split('@')[0];
-      document.getElementById("userInitial").textContent = email.charAt(0).toUpperCase();
-      alert("Login Berhasil!");
+      document.getElementById("userNameDisplay").textContent =
+        (authMode === "register" ? name : email.split("@")[0]) || email.split("@")[0];
+      document.getElementById("userInitial").textContent =
+        ((authMode === "register" ? name : email.split("@")[0]) || email).charAt(0).toUpperCase();
+
+      await showAlert(
+        "success",
+        authMode === "register" ? "Akun siap digunakan!" : "Berhasil masuk!",
+        authMode === "register"
+          ? "Tampilan akun berhasil dibuat untuk demo. Sambungkan autentikasi backend sebelum digunakan sungguhan."
+          : "Kamu sudah masuk ke tampilan demo StayNusa.",
+        { timer: 2200, timerProgressBar: true, showConfirmButton: false }
+      );
     }
 
     function logoutUser() {
@@ -471,7 +721,21 @@
       document.getElementById("guestAuthBar").classList.remove("hidden");
       document.getElementById("userProfileBar").classList.add("hidden");
       document.getElementById("userProfileBar").classList.remove("flex");
-      alert("Anda telah keluar.");
+      showAlert("success", "Kamu sudah keluar", "Sampai jumpa lagi di StayNusa!", {
+        timer: 1800, timerProgressBar: true, showConfirmButton: false
+      });
+    }
+
+    function chooseDestination(city) {
+      const select = document.getElementById("destinationSelect");
+      select.value = city;
+      goHome();
+      handleSearch(new Event("submit", { cancelable: true }));
+      document.getElementById("rekomendasi").scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    function showPromo(title, message) {
+      showAlert("info", title, message);
     }
 
     fetchHotelsFromDB();
